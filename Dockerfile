@@ -14,6 +14,7 @@ RUN ./mvnw clean package -DskipTests
 # Step 5: Copy the final Spring Boot JAR into the container
 COPY target/ServiceReg-0.0.1-SNAPSHOT.jar /app/ServiceReg.jar
 
+
 # Step 6: Expose the port your Spring Boot application will run on
 EXPOSE 8761
 
