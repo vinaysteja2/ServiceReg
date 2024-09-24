@@ -8,15 +8,17 @@ WORKDIR /app
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 
-# Step 4: Run Maven to download dependencies and build the application
+# Step 4: Make the Maven wrapper executable
+RUN chmod +x mvnw
+
+# Step 5: Run Maven to download dependencies and build the application
 RUN ./mvnw clean package -DskipTests
 
-# Step 5: Copy the final Spring Boot JAR into the container
+# Step 6: Copy the final Spring Boot JAR into the container
 COPY target/ServiceReg-0.0.1-SNAPSHOT.jar /app/ServiceReg.jar
 
-
-# Step 6: Expose the port your Spring Boot application will run on
+# Step 7: Expose the port your Spring Boot application will run on
 EXPOSE 8761
 
-# Step 7: Define the command to run the application
+# Step 8: Define the command to run the application
 ENTRYPOINT ["java", "-jar", "/app/ServiceReg.jar"]
